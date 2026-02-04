@@ -1,0 +1,14 @@
+import torch
+import torch.nn as nn
+
+class FCNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(FCNN, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)  # 输入层到隐藏层
+        self.fc2 = nn.Linear(hidden_size, output_size)  # 隐藏层到输出层
+        self.relu = nn.ReLU()  # ReLU 激活函数
+
+    def forward(self, x):
+        x = self.relu(self.fc1(x))  # 第一个隐藏层
+        x = self.fc2(x)  # 输出层
+        return x
